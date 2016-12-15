@@ -1,0 +1,12 @@
+HELP INFO
+You can use following parameters for search:
+-h (help) - Show usage information
+-f (format) - Output data format (json)
+-m (mode) Script mode (c - custom)
+-k (key) - Google API key
+-y (latitude) - User location coordinate latitude
+-x (longitude) - User location coordinate longitude
+-t (types) - Use types of places (trip, sport, food or health)
+-r (radius) - Initial radius size
+Write parameters separated by commas. Like this "-key" "value"
+For example: ["-y", "y48.466791", "-x", "x35.050957", "-m","c", "-k","Fake API key", "-t", "sport"]
