@@ -4,7 +4,7 @@ package Parser.symbols.operators;
  * Created by yevgen on 15.12.16.
  */
 public class Power extends Operator {
-    private Character value = '^';
+    private String value = "^";
     private int priority = 3;
 
     @Override
@@ -13,7 +13,7 @@ public class Power extends Operator {
     }
 
     @Override
-    public Character getValue() {
+    public String getValue() {
         return value;
     }
 

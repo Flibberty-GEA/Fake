@@ -5,17 +5,15 @@ package Parser.symbols;
  */
 public class OpeningBracket extends Symbol {
 
-    private Character value = '(';
-
-    public Character getValue() {
+    private String value = "(";
+    @Override
+    public String getValue() {
         return value;
     }
-
     @Override
     public int getPriority() {
         return 0;
     }
-
     @Override
     public boolean isOperator() {
         return false;
