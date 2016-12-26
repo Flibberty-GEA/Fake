@@ -17,5 +17,6 @@ public abstract class Function extends Symbol {
      * @param expression
      * @return  result of operation
      */
-    public abstract Double apply(final List<Member> expression);
+    public abstract List<Member> apply(final List<Member> expression);
+    public abstract int getPosition();
 }

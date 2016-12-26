@@ -4,27 +4,26 @@ import FakeCalc.domain.members.Member;
 import FakeCalc.domain.members.Number;
 
 import java.util.ArrayList;
-import java.util.DoubleSummaryStatistics;
 import java.util.List;
 
 /**
  * @author  Yevgen Goliuk
  */
-public class Addition extends Function {
+public class Multiplication extends Function {
 
-    private String value = "+";
-    private int priority = 1;
+    private String value = "*";
+    private int priority = 2;
     private int countOfOperands = 2;
-    private int position = 0;
 
+    @Override
     public int getPosition() {
         return position;
     }
 
+    private int position = 0;
     public void setPosition(int position) {
         this.position = position;
     }
-
     /**
      *  -1 - Function Operands (before)
 
@@ -33,7 +32,6 @@ public class Addition extends Function {
      */
     private int association = 0;
 
-
     /**
      * @param expression has x - left operand of operation
      *                     y - right operand of operation
@@ -41,11 +39,8 @@ public class Addition extends Function {
      */
     @Override
     public List<Member> apply(final List<Member> expression) {
-        Double x = ((Number)expression.get(getPositionFirstOperand())).getDoubleValue();
-        System.out.println("x = "+x);
-        Double y = ((Number)expression.get(getPositionSecondOperand())).getDoubleValue();
-        System.out.println("y = "+y);
-        Double result =  (x + y);
+        Double result =  (Double.valueOf(expression.get(getPositionFirstOperand()).getValue())) *
+                (Double.valueOf(expression.get(getPositionSecondOperand()).getValue()));
 
         List<Member> resultList = new ArrayList<>(expression);
         resultList.remove(getPositionSecondOperand());
@@ -54,7 +49,6 @@ public class Addition extends Function {
         resultList.add(getPositionFirstOperand(), new Number(result.toString()));
 
         return resultList;
-
     }
 
     @Override
@@ -78,5 +72,4 @@ public class Addition extends Function {
     public int getPositionSecondOperand(){
         return position+1;
     }
-
 }
