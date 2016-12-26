@@ -42,9 +42,9 @@ public class Addition extends Function {
     @Override
     public List<Member> apply(final List<Member> expression) {
         Double x = ((Number)expression.get(getPositionFirstOperand())).getDoubleValue();
-        System.out.println("x = "+x);
+//        System.out.println("x = "+x);
         Double y = ((Number)expression.get(getPositionSecondOperand())).getDoubleValue();
-        System.out.println("y = "+y);
+//        System.out.println("y = "+y);
         Double result =  (x + y);
 
         List<Member> resultList = new ArrayList<>(expression);
