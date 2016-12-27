@@ -8,10 +8,7 @@ import FakeCalc.domain.members.symbols.Symbol;
 import FakeCalc.domain.members.symbols.operators.Function;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Matcher;
 
 /**
@@ -30,13 +27,7 @@ public class MyExecutor {
         List<Member> expression = new ArrayList<>();
         final String[] str = userExpression.split(" ");
 
-        System.out.print("Hello from execute(). userExpression -> ");
-        printStringArray(str);
-
         List<Member> expression2 = castSArreyToMList(str);
-
-        System.out.print("List<Member> expression2 ");
-        printMemberList(expression2);
 
 //        Double result = Double.valueOf(brackets(expression2).size());
         Double result = ((Number)brackets(expression2).get(0)).getDoubleValue();
@@ -50,69 +41,75 @@ public class MyExecutor {
         List<Member> result = new ArrayList<>();
         List<Member> before = new ArrayList<>();
         for (int index = 0;index<expression.size();index++) {
-            System.out.println("Hello from FOR. Iteration №_"+index);
             Member member = expression.get(index);
             before = expression.subList(0, index+1);
 
-            System.out.print("Before list -> ");
-            printMemberList(before);
+
 
             if (member instanceof OpeningBracket){
                 System.out.println("Hello from if (. Iteration №_"+index);
                 List<Member> newExpression = expression.subList(index+1, expression.size());
 
                     before = expression.subList(0, index);
-                System.out.println("BEFOREEEE -> "+before.isEmpty());
+//                System.out.println("BEFOREEEE -> "+before.isEmpty());
 
                 result = brackets(newExpression);
+//                before.addAll(result);
 
-                before.addAll(result);
-                System.out.println("BEFORE in brackets !!!!!! 2.0? -> "+ before.get(0).getValue());
+                try{
+                    before.addAll(result);
+                } catch (Exception e){
+
+                }
                 break;
-//                continue;
             }
             if (member instanceof ClosingBracket){
 
                 List<Member> newExpression2 = expression.subList(0, index);
-
-//                for (int h = 0; h < newExpression2.size(); h++){
-//                    Member member2 = expression.get(index);
-//                    if (member instanceof ClosingBracket){
-//                        newExpression2 = newExpression2.subList(0, h);
-//                    }
-//                }
 
                     String[] strr = castMListToSArrey(newExpression2);
                     result = parse(strr);
 
                 List<Member> after = expression.subList(index+1, expression.size());
 
-                System.out.print("AFTER in brackets) -> ");
-                printMemberList(after);
+//                System.out.print("AFTER in brackets) -> ");
+//                printMemberList(after);
 
                 result.addAll(after);
 
-                    System.out.print("RESULT in brackets) return -> ");
-                    printMemberList(result);
-//                before.addAll(result);  //^^^
-//                result = brackets(before);
+//                    System.out.print("RESULT in brackets) return -> ");
+//                    printMemberList(result);
                     return result;
             }
         }
-
+try {
+    if (!before.isEmpty()){
         result = before;
+    }
+}catch (ConcurrentModificationException g){
 
-        System.out.print("Result list -> ");
+}
+
+
+
+        System.out.print("RESULT in brackets() return -> ");
         printMemberList(result);
 
-        for (Member m:result) {
-            if (m instanceof ClosingBracket){
+        try{
+
+        for (int k = 0; k < result.size(); k++) {
+            Member m = result.get(k);
+            if (m instanceof ClosingBracket) {
                 result = brackets(result);
             }
         }
+            result = parse(castMListToSArrey(result));
+        } catch (ConcurrentModificationException e){
+
+        }
 
 
-        result = parse(castMListToSArrey(result));
+
 
         return result;
     }
