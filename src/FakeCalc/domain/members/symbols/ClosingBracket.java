@@ -6,9 +6,11 @@ package FakeCalc.domain.members.symbols;
  * @author  Yevgen Goliuk
  */
 public class ClosingBracket extends Symbol {
-
-    private int position = 0;
     private String value = ")";
+    private String description = "— Closing bracket (signified by the plus symbol \")\") " +
+            "marks the end of a region of expression. Parentheses in mathematics " +
+            "signify a different precedence of operators. ";
+    private int position = 0;
 
     @Override
     public String getValue() {
@@ -23,6 +25,11 @@ public class ClosingBracket extends Symbol {
     @Override
     public void setPosition(int position) {
         this.position = position;
+    }
+
+    @Override
+    public String getDescription() {
+        return description;
     }
 
     @Override

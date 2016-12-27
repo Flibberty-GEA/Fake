@@ -12,11 +12,12 @@ import java.util.List;
  * @author  Yevgen Goliuk
  */
 public abstract class Function extends Symbol {
-
     /**
      * @param expression
      * @return  result of operation
      */
     public abstract List<Member> apply(final List<Member> expression);
     public abstract int getPosition();
+    public abstract void setPosition(int position);
+
 }

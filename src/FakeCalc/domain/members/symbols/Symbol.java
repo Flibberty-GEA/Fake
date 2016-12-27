@@ -4,9 +4,7 @@ package FakeCalc.domain.members.symbols;
 import FakeCalc.domain.members.Member;
 import org.reflections.Reflections;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * The class Symbol and its subclasses are a form of Member
@@ -28,6 +26,8 @@ public abstract class Symbol implements Member {
 
     public abstract void setPosition(int position);
 
+    public abstract String getDescription();
+
     /**
      * Takes over the selection of the appropriate instance of a Symbol.
      *
@@ -46,7 +46,6 @@ public abstract class Symbol implements Member {
                 values.put(symbol.getValue(), symbol);
             } catch (InstantiationException | IllegalAccessException e) {
                 continue;
-                //if nothing to created, return null and try to create Number in ParserRPN.toRPN()
             }
         }
         if (values.containsKey(symbolValue)){
@@ -55,4 +54,35 @@ public abstract class Symbol implements Member {
             return symbol;
         } else throw new Exception();
     }
+
+    public static List<String> values(){
+        List<String> resultList = new ArrayList<>();
+        Reflections reflections = new Reflections("");
+        Set<Class<? extends Symbol>> subclasses = reflections.getSubTypesOf(Symbol.class);
+        for (Class clazz:subclasses) {
+            try {
+                Symbol symbol = (Symbol)clazz.newInstance();
+                resultList.add(symbol.getValue());
+            } catch (InstantiationException | IllegalAccessException e) {
+                continue;
+            }
+        }
+        return resultList;
+    }
+
+    public static List<String> descriptions(){
+        List<String> resultList = new ArrayList<>();
+        Reflections reflections = new Reflections("");
+        Set<Class<? extends Symbol>> subclasses = reflections.getSubTypesOf(Symbol.class);
+        for (Class clazz:subclasses) {
+            try {
+                Symbol symbol = (Symbol)clazz.newInstance();
+                resultList.add(symbol.getDescription());
+            } catch (InstantiationException | IllegalAccessException e) {
+                continue;
+            }
+        }
+        return resultList;
+    }
+
 }

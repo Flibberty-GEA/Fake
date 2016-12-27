@@ -9,19 +9,26 @@ import java.util.List;
 /**
  * @author Yevgen Goliuk
  */
-public class Exponentiation extends Function {
-    private String value = "root";
-    private String description = "— Exponentiation is a mathematical operation, written as \""+value+" ( b , n )\", " +
-            "involving two numbers, the base b and the exponent n. For example \""+value+" ( 2 , 3 ) = 8\". ";
+public class Logarithm extends Function {
+    private String value = "log";
+    private String description = "— Logarithm written as \""+value+" ( b , n )\", " +
+            "involving two numbers, the base b and the number n. " +
+            "In mathematics, the logarithm is the inverse operation to exponentiation. " +
+            "That means the logarithm of a number is the exponent to which another fixed number, " +
+            "the base, must be raised to produce that number. " +
+            "For example \""+value+" ( 2 , 8 ) = 3\", because 2 ^ 3 = 8.";
     private int priority = 3;
     private int countOfOperands = 2;
     private int position = 0;
+
 
     @Override
     public List<Member> apply(List<Member> expression) {
         Double x = ((Number)expression.get(getPositionFirstOperand())).getDoubleValue();
         Double y = ((Number)expression.get(getPositionSecondOperand())).getDoubleValue();
-        Double result = Math.pow(x, y);
+        Double b = Math.log10(y);
+        Double a = Math.log10(x);
+        Double result = b / a;
 
         List<Member> resultList = new ArrayList<>(expression);
         resultList.remove(getPositionSecondOperand());
@@ -50,16 +57,6 @@ public class Exponentiation extends Function {
     }
 
     @Override
-    public boolean isOperator() {
-        return true;
-    }
-
-    @Override
-    public int getPriority() {
-        return priority;
-    }
-
-    @Override
     public void setPosition(int position) {
         this.position = position;
     }
@@ -67,5 +64,15 @@ public class Exponentiation extends Function {
     @Override
     public String getDescription() {
         return description;
+    }
+
+    @Override
+    public boolean isOperator() {
+        return true;
+    }
+
+    @Override
+    public int getPriority() {
+        return priority;
     }
 }

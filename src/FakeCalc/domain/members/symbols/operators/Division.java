@@ -7,32 +7,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author  Yevgen Goliuk
+ * @author Yevgen Goliuk
  */
-public class Multiplication extends Function {
-    private String value = "*";
-    private String description = "— Multiplication (denoted by an asterisk \""+value+"\") " +
-            "is one of the four elementary, mathematical operations of arithmetic. " +
-            "The multiplication of two numbers is equivalent to adding as many copies of one of them, " +
-            "the multiplicand, as the value of the other one, the multiplier. For example \"2 "+value+" 4 = 8\".";
+public class Division extends Function {
+    private String value = "/";
+    private String description = "— Division (signified by the plus symbol \""+value+"\") " +
+            "is one of the four basic operations of arithmetic. " +
+            "The division of two natural numbers is the process of calculating the number " +
+            "of times one number is contained within one another. For example \"20 "+value+" 5 = 4\".";
     private int priority = 2;
     private int countOfOperands = 2;
     private int position = 0;
-    /**
-     *  -1 - Function Operands (before)
-     *   0 - Operand Function Operand (between)
-     *   1 - Operands Function (after)
-     */
-    private int association = 0;
 
-    /**
-     * @param expression has x - left operand of operation
-     *                     y - right operand of operation
-     * @return  result of operation
-     */
     @Override
-    public List<Member> apply(final List<Member> expression) {
-        Double result =  (Double.valueOf(expression.get(getPositionFirstOperand()).getValue())) *
+    public List<Member> apply(List<Member> expression) {
+        Double result =  (Double.valueOf(expression.get(getPositionFirstOperand()).getValue())) /
                 (Double.valueOf(expression.get(getPositionSecondOperand()).getValue()));
 
         List<Member> resultList = new ArrayList<>(expression);
@@ -52,6 +41,11 @@ public class Multiplication extends Function {
     }
 
     @Override
+    public String getValue() {
+        return value;
+    }
+
+    @Override
     public int getPosition() {
         return position;
     }
@@ -59,6 +53,7 @@ public class Multiplication extends Function {
     @Override
     public void setPosition(int position) {
         this.position = position;
+
     }
 
     @Override
@@ -67,17 +62,13 @@ public class Multiplication extends Function {
     }
 
     @Override
-    public String getValue() {
-        return value;
+    public boolean isOperator() {
+        return true;
     }
 
     @Override
     public int getPriority() {
         return priority;
     }
-
-    @Override
-    public boolean isOperator() {
-        return true;
-    }
+//public static final Logger log = LogManager.getLogger(Division.class);
 }
