@@ -16,7 +16,7 @@ public class Comma extends Function {
     private int position = 0;
     private String description = "— A delimiter (signified by the plus symbol \""+value+"\") " +
             "used to specify the boundary between separate operands of a function." +
-            "For example \"root ( 2 "+value+" 3 ) = 8\". ";
+            "For example \"root ( 2 "+value+" 3 ) = 8\"";
 
     @Override
     public List<Member> apply(List<Member> expression) {

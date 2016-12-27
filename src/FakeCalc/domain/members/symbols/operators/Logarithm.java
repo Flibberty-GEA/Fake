@@ -16,12 +16,19 @@ public class Logarithm extends Function {
             "In mathematics, the logarithm is the inverse operation to exponentiation. " +
             "That means the logarithm of a number is the exponent to which another fixed number, " +
             "the base, must be raised to produce that number. " +
-            "For example \""+value+" ( 2 , 8 ) = 3\", because 2 ^ 3 = 8.";
+            "For example \""+value+" ( 2 , 8 ) = 3\", because 2 ^ 3 = 8";
     private int priority = 3;
     private int countOfOperands = 2;
     private int position = 0;
 
 
+    /**
+     * log a (b) = log c (b) / log c (a)
+     *
+     * @param expression has number 'b'
+     *                     base 'a'
+     * @return  result of operation
+     */
     @Override
     public List<Member> apply(List<Member> expression) {
         Double x = ((Number)expression.get(getPositionFirstOperand())).getDoubleValue();

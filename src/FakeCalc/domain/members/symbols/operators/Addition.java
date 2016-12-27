@@ -14,7 +14,7 @@ public class Addition extends Function {
     private String value = "+";
     private String description = "— Addition (signified by the plus symbol \""+value+"\") " +
             "is one of the four basic operations of arithmetic. The addition of two whole numbers " +
-            "is the total amount of those quantities combined. For example \"3 "+value+" 2 = 5\".";
+            "is the total amount of those quantities combined. For example \"3 "+value+" 2 = 5\"";
     private int priority = 1;
     private int countOfOperands = 2;
     private int position = 0;

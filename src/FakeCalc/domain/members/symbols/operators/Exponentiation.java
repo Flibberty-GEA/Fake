@@ -12,7 +12,7 @@ import java.util.List;
 public class Exponentiation extends Function {
     private String value = "root";
     private String description = "— Exponentiation is a mathematical operation, written as \""+value+" ( b , n )\", " +
-            "involving two numbers, the base b and the exponent n. For example \""+value+" ( 2 , 3 ) = 8\". ";
+            "involving two numbers, the base b and the exponent n. For example \""+value+" ( 2 , 3 ) = 8\"";
     private int priority = 3;
     private int countOfOperands = 2;
     private int position = 0;

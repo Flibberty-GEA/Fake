@@ -14,7 +14,7 @@ public class Multiplication extends Function {
     private String description = "— Multiplication (denoted by an asterisk \""+value+"\") " +
             "is one of the four elementary, mathematical operations of arithmetic. " +
             "The multiplication of two numbers is equivalent to adding as many copies of one of them, " +
-            "the multiplicand, as the value of the other one, the multiplier. For example \"2 "+value+" 4 = 8\".";
+            "the multiplicand, as the value of the other one, the multiplier. For example \"2 "+value+" 4 = 8\"";
     private int priority = 2;
     private int countOfOperands = 2;
     private int position = 0;

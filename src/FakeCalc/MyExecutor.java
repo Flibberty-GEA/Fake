@@ -23,13 +23,17 @@ public class MyExecutor {
     }
 
     public Double execute() {
-        List<Member> expression = new ArrayList<>();
         final String[] str = userExpression.split(" ");
-        List<Member> expression2 = castSArreyToMList(str);
+        List<Member> expression2 = toListOfMembers(str);
         Double result = ((Number) brackets(expression2).get(0)).getDoubleValue();
         return result;
     }
 
+    /**
+     * @param expression input members of expression
+     * @return result of input expression
+//     * @throws InputExpressionException if expression has invalid format
+     */
     private List<Member> brackets(List<Member> expression) {
         List<Member> result = new ArrayList<>();
         List<Member> before = new ArrayList<>();
@@ -49,7 +53,7 @@ public class MyExecutor {
             }
             if (member instanceof ClosingBracket) {
                 List<Member> newExpression2 = expression.subList(0, index);
-                String[] strr = castMListToSArrey(newExpression2);
+                String[] strr = toStringArrey(newExpression2);
                 result = parse(strr);
                 List<Member> after = expression.subList(index + 1, expression.size());
                 result.addAll(after);
@@ -70,7 +74,7 @@ public class MyExecutor {
                     result = brackets(result);
                 }
             }
-            result = parse(castMListToSArrey(result));
+            result = parse(toStringArrey(result));
         } catch (ConcurrentModificationException e) {
 
         }
@@ -78,18 +82,16 @@ public class MyExecutor {
     }
 
     public List<Member> parse(String[] str) {
-        List<Member> expression = new ArrayList<>();
-        expression = castSArreyToMList(str);
+        List<Member> expression;
+        expression = toListOfMembers(str);
         List<Function> functions = new ArrayList<>();
         for (Member item : expression) {
             if (item instanceof Function) functions.add((Function) item);
         }
         Collections.sort(functions, new FuncktionByPriority());
         expression = calc(expression, functions);
-
         return expression;
     }
-
 
     public List<Member> calc(List<Member> expression, List<Function> functions) {
         if (functions.size() != 0) {
@@ -110,21 +112,6 @@ public class MyExecutor {
         return expression;
     }
 
-
-    private void printMemberList(List<Member> members) {
-        for (Member m : members) {
-            System.out.print(m.getValue());
-        }
-        System.out.println();
-    }
-
-    private void printFunctionsList(List<Function> functions) {
-        for (Function f : functions) {
-            System.out.print(f.getValue());
-        }
-        System.out.println();
-    }
-
     private void printStringArray(String[] arrays) {
         for (int i = 0; i < arrays.length; i++) {
             System.out.print(arrays[i]);
@@ -132,7 +119,7 @@ public class MyExecutor {
         System.out.println();
     }
 
-    private List<Member> castSArreyToMList(final String[] arrays) {
+    private List<Member> toListOfMembers(final String[] arrays) {
         List<Member> result = new ArrayList<>();
         for (int i = 0; i < arrays.length; i++) {
             try {
@@ -147,11 +134,24 @@ public class MyExecutor {
         return result;
     }
 
-    private String[] castMListToSArrey(List<Member> members) {
+    private String[] toStringArrey(List<Member> members) {
         String[] result = new String[members.size()];
         for (int j = 0; j < members.size(); j++) {
             result[j] = members.get(j).getValue();
         }
         return result;
     }
+//    private void printMemberList(List<Member> members) {
+//        for (Member m : members) {
+//            System.out.print(m.getValue());
+//        }
+//        System.out.println();
+//    }
+//
+//    private void printFunctionsList(List<Function> functions) {
+//        for (Function f : functions) {
+//            System.out.print(f.getValue());
+//        }
+//        System.out.println();
+//    }
 }

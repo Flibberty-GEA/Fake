@@ -11,7 +11,7 @@ public class OpeningBracket extends Symbol {
             "marks the start of a region of expression. Parentheses in mathematics " +
             "signify a different precedence of operators. For example: \"2 + 3 * 4 + 14\", " +
             "since the multiplication is done before the addition. However, \"(2 + 3) * 4 + 20\", " +
-            "because the parentheses override normal precedence, causing the addition to be done first. ";
+            "because the parentheses override normal precedence, causing the addition to be done first";
     private int position = 0;
 
     @Override

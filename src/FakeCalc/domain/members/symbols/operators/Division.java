@@ -14,7 +14,7 @@ public class Division extends Function {
     private String description = "— Division (signified by the plus symbol \""+value+"\") " +
             "is one of the four basic operations of arithmetic. " +
             "The division of two natural numbers is the process of calculating the number " +
-            "of times one number is contained within one another. For example \"20 "+value+" 5 = 4\".";
+            "of times one number is contained within one another. For example \"20 "+value+" 5 = 4\"";
     private int priority = 2;
     private int countOfOperands = 2;
     private int position = 0;
