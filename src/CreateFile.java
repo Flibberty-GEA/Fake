@@ -9,9 +9,11 @@ import java.io.RandomAccessFile;
 public class CreateFile {
 
     public static void main(String[] args) {
-        File file = new File("/home/yevgen/IdeaProjects/Fake/src/file.txt");
+
+        String path = "ParseToRPN";
+        File file = new File("src/file.txt").getAbsoluteFile();
         try {
-            byte [] data = new byte[1000000000];
+            byte [] data = new byte[1000000];
             for (int i = 0; i < data.length; i++) {
                 data[i] = 1;
             }
@@ -23,6 +25,10 @@ public class CreateFile {
             e.printStackTrace();
         } catch (IOException e){
 
+        }
+
+        for (int index = 0; index<100; index++) {
+            System.out.println((byte) (Math.random()*2));
         }
 
     }
