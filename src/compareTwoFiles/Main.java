@@ -11,10 +11,16 @@ public class Main {
 
 
     public static void main(String[] args) {
-        File firstFile = new File("/home/yevgen/IdeaProjects/Fake/src/compareTwoFiles/resources/firstFile.bmp");
-        File secondFile = new File("/home/yevgen/IdeaProjects/Fake/src/compareTwoFiles/resources/secondFile.bmp");
-        File thirdFile = new File("/home/yevgen/IdeaProjects/Fake/src/compareTwoFiles/resources/file.bmp");
-        File wrongFile = new File("/home/yevgen/IdeaProjects/Fake/src/compareTwoFiles/resources/wrongFile.bmp");
+        String workPath = "/home/yevgen/IdeaProjects/Fake/src/compareTwoFiles/resources/";
+        String homePath = "C:\\Users\\yevge_000\\IdeaProjects\\Fake\\src\\compareTwoFiles\\resources\\";
+//        File firstFile = new File(workPath+"firstFile.bmp");
+//        File secondFile = new File(workPath+"secondFile.bmp");
+//        File thirdFile = new File(workPath+"file.bmp");
+//        File wrongFile = new File(workPath+"wrongFile.bmp");
+        File firstFile = new File(homePath+"firstFile.bmp");
+        File secondFile = new File(homePath+"secondFile.bmp");
+        File thirdFile = new File(homePath+"file.bmp");
+        File wrongFile = new File(homePath+"wrongFile.bmp");
 
         System.out.println(compareFileSize(firstFile, secondFile));
         System.out.println(compareFileSize(firstFile, thirdFile));
@@ -60,6 +66,14 @@ public class Main {
 //            System.out.println("CRC Failed");
 //        }
     }
+
+//    public static String md5Apache(String st) {
+//        String md5Hex = DigestUtils.md5Hex(st);
+//
+//        return md5Hex;
+//    }
+
+
 
     public static boolean compareFileSize(final File first, final File second){
         boolean result = false;
